@@ -11,11 +11,11 @@
 	if($called_position == 'before_display_content') {
 		if(Context::get('document_srl')) {
 			//관리자는 예외
-			//if($logged_info->is_admin == 'Y')	return;
+			if($logged_info->is_admin == 'Y')	return;
 
 			$document_srl = Context::get('document_srl');
 			$oDocumentModel = &getModel('document');
-            $oDocument = $oDocumentModel->getDocument($document_srl, $this->grant->manager);
+			$oDocument = $oDocumentModel->getDocument($document_srl, $this->grant->manager);
 
 			$read_level = $oDocument->getExtraEidValue('read_level');
 
