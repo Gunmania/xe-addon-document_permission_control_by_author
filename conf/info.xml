@@ -2,8 +2,8 @@
 <addon version="0.2">
     <title xml:lang="ko">작성자가 글 열람 레벨 지정 애드온</title>
     <description xml:lang="ko">글의 열람 가능 레벨을 작성자가 지정하는 애드온.</description>
-    <version>0.1</version>
-    <date>2015-07-10</date>
+    <version>0.2</version>
+    <date>2015-07-15</date>
     <author email_address="d.gunmania@gmail.com" link="http://gunmania.kr">
 		<name xml:lang="ko">Gunmania</name>
 	</author> 

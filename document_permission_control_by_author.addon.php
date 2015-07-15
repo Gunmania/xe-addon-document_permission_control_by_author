@@ -8,7 +8,7 @@
 
 	$logged_info = Context::get('logged_info');
 
-	if($called_position == 'before_display_content') {
+	if($called_position == 'before_module_proc') {
 		if(Context::get('document_srl')) {
 			//관리자는 예외
 			if($logged_info->is_admin == 'Y')	return;
@@ -16,6 +16,9 @@
 			$document_srl = Context::get('document_srl');
 			$oDocumentModel = &getModel('document');
 			$oDocument = $oDocumentModel->getDocument($document_srl, $this->grant->manager);
+
+			//작성자 본인 예외
+			if($oDocument->get('member_srl') == $logged_info->member_srl)	return;
 
 			$read_level = $oDocument->getExtraEidValue('read_level');
 
@@ -29,12 +32,12 @@
 			$member_level = $oPointModel->getLevel($member_point, $config->level_step);
 			
 
-			//활동 기준치를 만족할 때
+			//레벨 기준을 만족할 때
 			if ($member_level >= $read_level) {
 				return;
 			}
 	
-			//활동 기준치를 만족하지 못할 때
+			//레벨 기준을 만족하지 못할 때
 			else {
 				$ref = $_SERVER['HTTP_REFERER'];
 				header("Content-Type: text/html; charset=UTF-8");
